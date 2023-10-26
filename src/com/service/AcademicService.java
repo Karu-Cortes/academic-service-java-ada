@@ -67,4 +67,17 @@ public class AcademicService {
             student.addEnrolledCourses(course);
         }
     }
+
+    public void enrollProfessor(String idProfessor, String codeCourse) {
+        Optional<Professor> professorOptional = findProfessorById(idProfessor);
+        Optional<Course> courseOptional = findCourseByCode(codeCourse);
+
+        if (professorOptional.isPresent() && courseOptional.isPresent()) {
+            Professor professor = professorOptional.get();
+            Course course = courseOptional.get();
+
+            professor.addCourseToTeach(course);
+        }
+    }
+
 }

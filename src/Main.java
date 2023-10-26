@@ -13,7 +13,7 @@ public class Main {
         AcademicService academicService = new AcademicService();
 
         int option = showOptionsMenuAndCaptureOption();
-        while (option != 8) {
+        while (option != 9) {
 
             switch (option) {
                 case 1 -> registerNewProfessor(academicService);
@@ -23,6 +23,7 @@ public class Main {
                 case 5 -> findAProfessor(academicService);
                 case 6 -> findAStudent(academicService);
                 case 7 -> findACourse(academicService);
+                case 8 -> enrollProfessorToCourse(academicService);
             }
             option = showOptionsMenuAndCaptureOption();
         }
@@ -72,6 +73,16 @@ public class Main {
         String codeCourse = scanner.nextLine();
         academicService.enrollStudent(idStudent, codeCourse);
         System.out.println("Student with ID " + idStudent + " enrolled in the course with code " + codeCourse);
+    }
+
+    private static void enrollProfessorToCourse(AcademicService academicService) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the professor's ID: ");
+        String idProfessor = scanner.nextLine();
+        System.out.println("Enter the course code: ");
+        String codeCourse = scanner.nextLine();
+        academicService.enrollProfessor(idProfessor, codeCourse);
+        System.out.println("Student with ID " + idProfessor + " enrolled in the course with code "+codeCourse);
     }
 
     private static void registerNewStudent(AcademicService academicService) {
@@ -125,13 +136,14 @@ public class Main {
         System.out.println("| 5. Find  a  Professor                        |");
         System.out.println("| 6. Find  a  Student                          |");
         System.out.println("| 7. Find  a  Course                           |");
-        System.out.println("| 8. Exit                                      |");
+        System.out.println("| 8. Enroll Professor to Course                |");
+        System.out.println("| 9. Exit                                      |");
         System.out.println("*----------------------------------------------*");
         Scanner scanner = new Scanner(System.in);
-        int option = 8;
+        int option = 9;
         try {
             option = scanner.nextInt();
-            if (option < 1 || option > 8) {
+            if (option < 1 || option > 9) {
                 System.out.println("| The Option selected is not valid. Please try again |");
                 showOptionsMenuAndCaptureOption();
             }
